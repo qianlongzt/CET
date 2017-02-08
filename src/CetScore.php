@@ -1,7 +1,7 @@
 <?php
 namespace Qianlongzt\Cet;
 
-class Cet
+class CetScore
 {
     public static function getScore($name, $ticket, $source = 'chsi')
     {
