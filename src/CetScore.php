@@ -36,7 +36,7 @@ class CetScore
         $arr['examRoom'] = $match[4];
         $arr['examSeat'] = $match[5];
         return $arr;
-}
+    }
 
     public static function getScoreFrom99($ticket, $name)
     {
@@ -77,7 +77,7 @@ class CetScore
         }
         $arr['source'] = '99sushe';
         return $arr;
-}
+    }
 
     public static function getScoreFromChsi($ticket, $name)
     {
@@ -126,6 +126,6 @@ class CetScore
         }
         $arr['source'] = 'chsi';
         return $arr;
-}
+    }
 }
 
