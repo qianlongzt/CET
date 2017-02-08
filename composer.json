@@ -1,0 +1,22 @@
+{
+    "name": "qianlongzt/cet",
+    "description": "a simple cet library. 一个简单的 CET 库。",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "qianlongzt",
+            "email": "1401300561@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "ext-curl": "*",
+        "ext-mbstring": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Qianlongzt\\Cet\\": "src"
+        }
+    }
+}
