@@ -1,4 +1,5 @@
 <?php
+namespace Qianlongzt\Cet;
 
 class Cet
 {

@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Qianlongzt\\Cet\\": "src"
+            "Qianlongzt\\Cet\\": "src/"
         }
     }
 }
