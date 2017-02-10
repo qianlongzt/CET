@@ -8,7 +8,9 @@ Via Composer
 ``` bash
 composer require qianlongzt/cet
 ```
-## Usage
+
+
+## Usage CetScore
 
 ``` php
 <?php
@@ -20,7 +22,9 @@ $source = '99sushe'; # chsi (学信网), 99sushe(99宿舍)
 $cetScore = Qianlongzt\Cet\CetScore::getScore($name, $ticket, $source);
 var_dump($cetScore);
 ```
+
 sample output like this
+
 ```
 array(12) {
   ["status"]=>
@@ -47,6 +51,26 @@ array(12) {
     int(125)
   ["source"]=>
     string(7) "99sushe"
+}
+
+``` 
+
+## Usage CetSchoolCode
+
+___important some code has many names in some cases___
+
+``` php
+<?php
+require_once __DIR__ .'/vendor/autoload.php';
+
+$code = new Qianlongzt\Cet\CetSchoolCode();
+var_dump($code->getName('3303070'));
+```
+sample output like this
+```
+array(1) {
+  [0]=>
+    string(24) "杭州电子科技大学"
 }
 
 ``` 
