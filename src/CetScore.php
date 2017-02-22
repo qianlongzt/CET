@@ -72,6 +72,7 @@ class CetScore
             $arr['spokenGrade'] = $scores[10];
         } else if(count($scores) === 1 ) {
             $arr['status'] = false;
+            $arr['errMsg'] = '未知错误';
             if($scores[0] === '4') {
                 $arr['errType'] = 1;
             } else {
@@ -85,7 +86,7 @@ class CetScore
     public static function getScoreFromChsi($ticket, $name)
     {
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, 'http://www.chsi.com.cn/cet/query?zkzh='.$ticket.'&xm='.mb_substr($name, 0, 3));
+        curl_setopt($curl, CURLOPT_URL, $url = 'http://www.chsi.com.cn/cet/query?zkzh='.$ticket.'&xm='.mb_substr($name, 0, 3));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_TIMEOUT, 3);
         curl_setopt($curl, CURLOPT_REFERER, 'http://www.chsi.com.cn/cet/');
@@ -96,6 +97,7 @@ class CetScore
             return array(
                 'status' => false,
                 'errType' => 1,
+                'errMsg'  => '错误的准考证或姓名',
                 'source' => 'chsi'
             );
         }
@@ -104,28 +106,35 @@ class CetScore
             return array(
                 'status' => false,
                 'errType' => 2,
+                'errMsg' => '匹配错误',
                 'source' => 'chsi'
             );
         }
         $scoreString =  preg_replace('#<[^>]*>#','',$match[1]);
         $scoreString = preg_replace('#\s#','', $scoreString);
-        $pattern = '#姓名：(\S+)学校：(\S+)考试类别：(\S+)准考证号：(\S+)考试时间：(\S+)总分：(\S+)听力：(\S+)阅读：(\S+)写作与翻译：(\S+)#';
+        $scoreString = preg_replace('#&nbsp;#','', $scoreString);
+        $scoreString = preg_replace('#：#','', $scoreString);
+        $pattern = '#姓名(\S+)学校(\S+)考试级别(\S+)笔试成绩准考证号(\S+)总分(\S+)听力(\S+)阅读(\S+)写作和翻译(\S+)口试成绩准考证号(\S+)等级(\S+)#';
         preg_match($pattern, $scoreString, $match);
-        if(count($match) > 8) {
-            $arr['status']	= true;
+        if(count($match) >= 10) {
+            $info = self::cetInfo($ticket);
+            $arr['status'] = true;
             $arr['errType'] = 0;
             $arr['name'] = $match[1];
             $arr['school'] = $match[2];
             $arr['type'] = $match[3];
+            $arr['examTime'] = $info['examTime'];
             $arr['ticket'] = $match[4];
-            $arr['examTime'] = $match[5];
-            $arr['score'] =(int) $match[6];
-            $arr['listening'] =(int) $match[7];
-            $arr['reading'] = (int) $match[8];
-            $arr['writing'] = (int) $match[9];
+            $arr['score'] =(int) $match[5];
+            $arr['listening'] =(int) $match[6];
+            $arr['reading'] = (int) $match[7];
+            $arr['writing'] = (int) $match[8];
+            $arr['spokenTestid'] = $match[9];
+            $arr['spokenGrade'] = $match[10];
         } else {
             $arr['status'] = false;
             $arr['errType'] = 'ohter';
+            $arr['errMsg'] = '未知错误';
         }
         $arr['source'] = 'chsi';
         return $arr;
