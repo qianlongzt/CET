@@ -1,5 +1,12 @@
 99宿舍接口 201702 版
 
+接口地址    `http://cet.99sushe.com/getscore`
+必须带上    `Referer: http://cet.99sushe.com/`
+请求方法    `POST`
+参数 `id`   准考证号
+参数 `name` 姓名（最多2位）
+字符编码 GBK
+
 索引 | 说明
 -----|-----
 0    | 未知
@@ -40,4 +47,12 @@
 7     | 俄语四级
 8     | 俄语六级
 9     | 法语四级
+
+学信网接口
+
+接口地址    `http://www.chsi.com.cn/cet/query`
+请求方法    `GET`
+参数 `zkzh` 准考证号
+参数 `xm`   姓名（最多三位）
+字符编码    UTF-8
 
