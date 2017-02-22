@@ -54,19 +54,22 @@ class CetScore
         $scores = explode(',',$content);
 
         $arr = array();
-        if(count($scores) > 6){
+        if(count($scores) === 11){
             $info = self::cetInfo($ticket);
             $arr['status'] = true;
             $arr['errType'] =  0;
-            $arr['name'] =  $scores[6];
-            $arr['school'] = $scores[5];
+            $arr['name'] =  $scores[7];
+            $arr['school'] = $scores[6];
             $arr['type'] = $info['examType'];
-            $arr['ticket'] = $ticket;
+            $arr['ticket'] = $scores[1];
             $arr['examTime'] = $info['examTime'];
-            $arr['score'] = (int) $scores[4];
-            $arr['listening'] = (int) $scores[1];
-            $arr['reading'] = (int) $scores[2];
-            $arr['writing'] = (int) $scores[3];
+            $arr['score'] = (int) $scores[5];
+            $arr['listening'] = (int) $scores[2];
+            $arr['reading'] = (int) $scores[3];
+            $arr['writing'] = (int) $scores[4];
+            $arr['hearingLoss'] = (bool) $scores[8];
+            $arr['spokenTestid'] = $scores[9];
+            $arr['spokenGrade'] = $scores[10];
         } else if(count($scores) === 1 ) {
             $arr['status'] = false;
             if($scores[0] === '4') {
