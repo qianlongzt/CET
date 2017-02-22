@@ -1,16 +1,16 @@
 # CET
-简单大学英语四六级库
+a simple CET library. 简单大学英语四六级库
 
-## 安装
+## Instal
 
-通过 Composer 进行安装
+Via Composer
 
 ``` bash
 composer require qianlongzt/cet
 ```
 
 
-## 使用 CetScore
+## Usage CetScore
 
 ``` php
 <?php
@@ -23,16 +23,14 @@ $cetScore = Qianlongzt\Cet\CetScore::getScore($name, $ticket, $source);
 var_dump($cetScore);
 ```
 
-输出像这样子
+sample output like this
 
 ```
 array(15) {
   ["status"]=>
-  bool(true)    # 是否获取成功
+  bool(true)
   ["errType"]=>
-  int(0)        # 错误代码
-  ["errMsg"] =>
-  "ok"          # 错误说明，为 0 时 不出现这个 key
+  int(0)
   ["name"]=>
   string(6) "张三"
   ["school"]=>
@@ -40,32 +38,31 @@ array(15) {
   ["type"]=>
   string(12) "英语四级"
   ["ticket"]=>
-  string(15) "330000162100000" # 准考证号
+  string(15) "330000162100000"
   ["examTime"]=>
   string(12) "2016年12月"
   ["score"]=>
-  int(471)                      # 总分
-  ["listening"]=>               #听力
+  int(471)
+  ["listening"]=>
   int(166)
-  ["reading"]=>                 # 阅读
+  ["reading"]=>
   int(168)
-  ["writing"]=>                 # 写作和翻译
+  ["writing"]=>
   int(137)
-  ["hearingLoss"]=>             # 听力残疾 只有来源是 99sushe 才有
+  ["hearingLoss"]=>
   bool(false)
-  ["spokenTestid"]=>            # 口语准考证号
+  ["spokenTestid"]=>
   string(15) "F12345678901234"
-  ["spokenGrade"]=>             # 口语等级
+  ["spokenGrade"]=>
   string(3) "C+"
   ["source"]=>
   string(7) "99sushe"
 }
-
 ``` 
 
-## 使用 查学校名称
+## Usage CetSchoolCode
 
-___有些学校可能一个编号对应于有多个名字___
+___important some code has many names in some cases___
 
 ``` php
 <?php
@@ -82,6 +79,6 @@ array(1) {
 }
 
 ``` 
-## 版权
+## License
 
 The MIT License. Please see [License File](LICENSE.md) for more information.
